@@ -114,19 +114,19 @@ public class App {
 //            System.err.println(file);
 //        }
 
-                    //        for (int i = 1; i < maxSize; i = i * 2) {
-                    //            if (cSize < 0) {
-                    //                cacheSizeINGB = i;
-                    //                cacheSize = cacheSizeINGB / averageFileSizeInGB;
-                    //            } else {
-                    //                cacheSize = cSize;
-                    //            }
-                    //            cache = new MFUCache((int) cacheSize);
-                    //            r = new RequestHandler(cache, requestsFile);
-                    //            r.start();
-                    //            System.err.println((int) cacheSize + ", " + cacheSizeINGB + ", " + r.getHitRatio());
-                    //            System.gc();
-                    //        }
+        for (int i = 1; i < maxSize; i = i * 2) {
+            if (cSize < 0) {
+                cacheSizeINGB = i;
+                cacheSize = cacheSizeINGB / averageFileSizeInGB;
+            } else {
+                cacheSize = cSize;
+            }
+            cache = new MFUCache((int) cacheSize);
+            r = new RequestHandler(cache, requestsFile);
+            r.start();
+            System.err.println((int) cacheSize + ", " + cacheSizeINGB + ", " + r.getHitRatio());
+            System.gc();
+        }
 
     }
 
