@@ -4,8 +4,6 @@ import nl.uva.cs.lobcder.cache.ACRCache;
 import nl.uva.cs.lobcder.cache.RRCache;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.Set;
 import nl.uva.cs.lobcder.cache.MFUCache;
 import nl.uva.cs.lobcder.cache.LFUCache;
 import nl.uva.cs.lobcder.cache.LRUCache;
