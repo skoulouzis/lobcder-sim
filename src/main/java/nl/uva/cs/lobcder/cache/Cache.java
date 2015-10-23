@@ -4,12 +4,9 @@
  */
 package nl.uva.cs.lobcder.cache;
 
-import java.util.Collections;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import java.util.TreeMap;
 
 /**
  *
@@ -21,7 +18,7 @@ public abstract class Cache {//implements CacheI{
     protected int cacheSize;
 
     public Cache(int cacheSize, boolean order) {
-        this.cacheMap = new HashMap<String, Long>(cacheSize);
+        this.cacheMap = new HashMap<String, Long>();
         this.cacheSize = cacheSize;
     }
 
@@ -116,5 +113,9 @@ public abstract class Cache {//implements CacheI{
 
             }
         }
+    }
+
+    public Set<String> getCache() {
+        return this.cacheMap.keySet();
     }
 }
