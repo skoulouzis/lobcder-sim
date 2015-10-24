@@ -15,35 +15,11 @@ public class App {
 
     public static void main(String[] args) {
         try {
-            double averageFileSizeInGB = 0;
-            String requestsFile;
-            maxSize = Integer.valueOf(args[2]);
-            int cSize = -1;
-            if (args.length > 3 && args[3] != null) {
-                cSize = Integer.valueOf(args[3]);
-            }
-            if (args[0].equals("Krakow")) {
-                System.err.println("Krakow");
-                run(args[1], System.getProperty("user.home") + "/Downloads/req_krak", 0.005431652024, cSize);
-            } else if (args[0].equals("Sheffield")) {
-                System.err.println("Sheffield");
-                averageFileSizeInGB = 0.012958937164;
-                requestsFile = System.getProperty("user.home") + "/Downloads/req_sheffild";
-                run(args[1], requestsFile, averageFileSizeInGB, cSize);
-            } else if (args[0].equals("Oxford")) {
-                System.err.println("Oxford");
-                averageFileSizeInGB = 6.99413654e-5;
-                requestsFile = System.getProperty("user.home") + "/Downloads/req_oxford";
-                run(args[1], requestsFile, averageFileSizeInGB, cSize);
-            } else if (args[0].equals("Amsterdam")) {
-                System.err.println("Amsterdam");
-                averageFileSizeInGB = 0.0102568017228;
-                requestsFile = System.getProperty("user.home") + "/Downloads/req_ams";
-                run(args[1], requestsFile, averageFileSizeInGB, cSize);
-            } else if (args[0].equals("test")) {
-                System.err.println("test");
-                requestsFile = System.getProperty("user.home") + "/Downloads/req_test";
-                run(args[1], requestsFile, averageFileSizeInGB, cSize);
+
+            if (args[0].equals("cache")) {
+                cacheAlgorithms(args);
+            } else if (args[0].equals("prefetch")) {
+                prefetchAlgorithms(args);
             }
 
         } catch (Exception ex) {
@@ -268,7 +244,7 @@ public class App {
         }
     }
 
-    private static void run(String alogrithm, String requestsFile, double averageFileSizeInGB, int cSize) throws FileNotFoundException, IOException, InterruptedException {
+    private static void runCacheTest(String alogrithm, String requestsFile, double averageFileSizeInGB, int cSize) throws FileNotFoundException, IOException, InterruptedException {
 
         if (alogrithm.equals("LFU")) {
             testLFU(requestsFile, averageFileSizeInGB, cSize);
@@ -281,5 +257,42 @@ public class App {
         } else if (alogrithm.equals("MRU")) {
             testMRU(requestsFile, averageFileSizeInGB, cSize);
         }
+    }
+
+    private static void cacheAlgorithms(String args[]) throws FileNotFoundException, IOException, InterruptedException {
+        double averageFileSizeInGB = 0;
+        String requestsFile;
+        maxSize = Integer.valueOf(args[3]);
+        int cSize = -1;
+        if (args.length > 3 && args[4] != null) {
+            cSize = Integer.valueOf(args[4]);
+        }
+        if (args[1].equals("Krakow")) {
+            System.err.println("Krakow");
+            runCacheTest(args[2], System.getProperty("user.home") + "/Downloads/req_krak", 0.005431652024, cSize);
+        } else if (args[1].equals("Sheffield")) {
+            System.err.println("Sheffield");
+            averageFileSizeInGB = 0.012958937164;
+            requestsFile = System.getProperty("user.home") + "/Downloads/req_sheffild";
+            runCacheTest(args[2], requestsFile, averageFileSizeInGB, cSize);
+        } else if (args[1].equals("Oxford")) {
+            System.err.println("Oxford");
+            averageFileSizeInGB = 6.99413654e-5;
+            requestsFile = System.getProperty("user.home") + "/Downloads/req_oxford";
+            runCacheTest(args[2], requestsFile, averageFileSizeInGB, cSize);
+        } else if (args[1].equals("Amsterdam")) {
+            System.err.println("Amsterdam");
+            averageFileSizeInGB = 0.0102568017228;
+            requestsFile = System.getProperty("user.home") + "/Downloads/req_ams";
+            runCacheTest(args[2], requestsFile, averageFileSizeInGB, cSize);
+        } else if (args[1].equals("test")) {
+            System.err.println("test");
+            requestsFile = System.getProperty("user.home") + "/Downloads/req_test";
+            runCacheTest(args[2], requestsFile, averageFileSizeInGB, cSize);
+        }
+    }
+
+    private static void prefetchAlgorithms(String[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
